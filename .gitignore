@@ -48,3 +48,6 @@ __pycache__/
 *.user
 *.sln.docstates
 *.lock.json
+
+.env
+
