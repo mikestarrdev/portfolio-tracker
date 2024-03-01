@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development settings
+local_settings.py
+
+# Database
+db.sqlite3
+*.sqlite3
+
+# Log files
+*.log
+
+# Static files
+staticfiles/
+
+# Media files
+media/
+
+# Virtual environment
+venv/
+.env/
+
+# IDE-specific files
+.vscode/
+.idea/
+
+# Compiled Python bytecode
+*.pyc
+
+# Caches
+__pycache__/
+.cache/
+
+# .pyc files
+*.pyc
+
+# Type-checker directory
+.mypy_cache/
+
+# Testing
+*.pytest_cache/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+*.lock.json
