@@ -50,4 +50,6 @@ __pycache__/
 *.lock.json
 
 .env
+.env.local
 
+settings.py
