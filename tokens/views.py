@@ -10,15 +10,9 @@ class TokenListCreateView(generics.ListCreateAPIView):
     def get_queryset(self):
         queryset = Token.objects.all()
         contract_address = self.request.query_params.get('contract_address', None)
-        name = self.request.query_params.get('name', None)
-        symbol = self.request.query_params.get('symbol', None)
 
         if contract_address:
             queryset = queryset.filter(contract_address=contract_address)
-        if name:
-            queryset = queryset.filter(name=name)
-        if symbol:
-            queryset = queryset.filter(symbol=symbol)
 
         return queryset
 
