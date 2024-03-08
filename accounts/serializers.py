@@ -4,4 +4,6 @@ from .models import Account
 class AccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
-        fields = ['id', 'address', 'token', 'amount']
+        fields = ['user', 'id', 'address', 'token', 'amount']
+
+    user = serializers.PrimaryKeyRelatedField(read_only=True)

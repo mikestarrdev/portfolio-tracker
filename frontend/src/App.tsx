@@ -1,11 +1,12 @@
 import React from 'react'
-import './App.css'
 import { Box, Heading } from '@chakra-ui/react'
+import { Login } from './Login'
 
 function App() {
   return (
     <React.Fragment>
       <Heading as='h1'>Crypto Tracker</Heading>
+      <Login />
       <Box mt={4}>
         <Heading as='h2' size='lg'>
           Your portfolio

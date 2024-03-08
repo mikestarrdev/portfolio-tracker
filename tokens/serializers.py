@@ -4,4 +4,4 @@ from .models import Token
 class TokenSerializer(serializers.ModelSerializer):
     class Meta:
         model = Token
-        fields = ['id', 'contract_address', 'name', 'symbol', 'decimals']
+        fields = ['user', 'id', 'contract_address', 'name', 'symbol', 'decimals']

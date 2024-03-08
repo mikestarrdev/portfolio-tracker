@@ -4,17 +4,20 @@ from django.contrib.auth.views import LoginView, LogoutView
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserProfileSerializer
+from .serializers import ProfileSerializer
+from .models import Profile
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = UserProfileSerializer
+    serializer_class = ProfileSerializer
 
     def post(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
+        data = request.data
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
-        user = serializer.save()
-        return Response(UserProfileSerializer(user).data, status=status.HTTP_201_CREATED)
+        profile = serializer.save()
+
+        return Response(ProfileSerializer(profile.profile).data, status=status.HTTP_201_CREATED)
 
 class UserLoginView(LoginView):
     template_name = 'login.html'  # You can customize the login template if needed
