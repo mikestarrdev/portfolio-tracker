@@ -1,10 +1,11 @@
 # pylint: disable=no-member
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import generics
 from .models import Token
 from .serializers import TokenSerializer
 
-class TokenListCreateView(generics.ListCreateAPIView):
+class TokenListCreateView(LoginRequiredMixin, generics.ListCreateAPIView):
     serializer_class = TokenSerializer
 
     def get_queryset(self):
@@ -16,6 +17,6 @@ class TokenListCreateView(generics.ListCreateAPIView):
 
         return queryset
 
-class TokenDetailView(generics.RetrieveUpdateDestroyAPIView):
+class TokenDetailView(LoginRequiredMixin, generics.RetrieveUpdateDestroyAPIView):
     queryset = Token.objects.all()
     serializer_class = TokenSerializer

@@ -1,11 +1,13 @@
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
 from rest_framework import generics
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import UserProfileSerializer
 
 class UserRegistrationView(generics.CreateAPIView):
-    queryset = User.object.all()
+    queryset = User.objects.all()
     serializer_class = UserProfileSerializer
 
     def post(self, request, *args, **kwargs):
@@ -14,12 +16,12 @@ class UserRegistrationView(generics.CreateAPIView):
         user = serializer.save()
         return Response(UserProfileSerializer(user).data, status=status.HTTP_201_CREATED)
 
-class UserLoginView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserProfileSerializer
+class UserLoginView(LoginView):
+    template_name = 'login.html'  # You can customize the login template if needed
 
-    def post(self, request, *args, **kwargs):
-        # TODO: ADD LOGIN LOGIC BELOW
-        # Add your login logic here
-        # Authenticate the user, generate tokens, etc.
-        return Response("Losin successful", status=status.HTTP_200_OK)
+class UserLogoutView(LogoutView):
+    next_page = '/'  # Redirect to this URL after logout
+
+class ProtectedView(LoginRequiredMixin, generics.RetrieveAPIView):
+    def get(self, request, *args, **kwargs):
+        return Response({"message": "This is a protected view for authenticated users."})
