@@ -3,7 +3,7 @@ from django.db import models
 from tokens.models import Token
 
 class Account(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     address = models.CharField(max_length=225)
     token = models.ForeignKey(Token, on_delete=models.CASCADE)
     amount = models.FloatField()
